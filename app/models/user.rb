@@ -8,4 +8,7 @@ class User
   field :introduce, type: String
   field :phone, type: String
   field :status, type: String
+
+  has_and_belongs_to_many :borrowed_books, class_name: 'Book'
+  has_many :evaluations
 end
