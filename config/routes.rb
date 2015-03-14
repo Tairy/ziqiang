@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :settings
+
   resources :activities
 
   resources :admins

@@ -9,5 +9,9 @@ class Donor
   field :wordsto, type: String
   # field :donored_books, type: String
 
+  validates :name, presence: true
+  validates :phone, presence: true
+  validates :identify, presence: true
+
   has_many :donored_books, class_name: 'Book'
 end
