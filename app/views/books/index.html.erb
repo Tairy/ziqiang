@@ -1,25 +1,64 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">
+      <i class="fa fa-book"></i> 书籍管理
+    </h1>
+    <ol class="breadcrumb">
+      <li>
+        <i class="fa fa-book"></i> 书籍管理
+      </li>
+      <li class="active">
+          <i class="fa fa-list-ul"></i> 书籍列表
+      </li>
+    </ol>
+  </div>
+</div>
 
-<h1>Listing Books</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @books.each do |book| %>
-      <tr>
-        <td><%= link_to 'Show', book %></td>
-        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>书名</th>
+            <th>作者</th>
+            <th>捐赠者</th>
+            <th>捐赠时间</th>
+            <th>当前状态</th>
+            <th>借阅者</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+          <tr>
+              <td><%= book.name %></td>
+              <td><%= book.author %></td>
+              <td><%= book.donor %></td>
+              <td><%= book.donate_time.to_formatted_s(:db) %></td>
+              <td>
+                <% if book.status == "BORROWED" %>
+                  <span style="color:red;"> 已借出 </span>
+                <% elsif book.status == "CANBORROW" %>
+                  可&nbsp;&nbsp;&nbsp;&nbsp;借
+                <% end %>
+              </td>
+              <td>
+                <% if book.current_borrower %>
+                  <%= link_to book.current_borrower.true_name , book.current_borrower%>
+                <% else %>
+                  无
+                <% end %>
+              </td>
+              <td><%= link_to '查看书籍', book , :class => 'btn btn-success btn-sm'%> &nbsp;
+                  <%= link_to '编辑书籍', edit_book_path(book), :class => 'btn btn-primary btn-sm' %> &nbsp;
+                  <%= link_to '删除书籍', book, method: :delete, data: { confirm: '确认删除？' }, :class=>'btn btn-danger btn-sm'%></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'New Book', new_book_path %>

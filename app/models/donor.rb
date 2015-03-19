@@ -7,7 +7,6 @@ class Donor
   field :address, type: String
   field :identify, type: String
   field :wordsto, type: String
-  # field :donored_books, type: String
 
   validates :name, presence: true
   validates :phone, presence: true
