@@ -33,7 +33,7 @@
         <tbody>
           <% @users.each do |user| %>
           <tr>
-              <td><%= user.true_name %></td>
+              <td><%= link_to(user.true_name, user) %></td>
               <td><%= user.sex%></td>
               <td><%= user.card_num %></td>
               <td><%= user.student_id %></td>
