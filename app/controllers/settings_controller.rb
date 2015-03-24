@@ -4,7 +4,8 @@ class SettingsController < ApplicationController
   # GET /settings
   # GET /settings.json
   def index
-    @settings = Setting.all
+    # @settings = Setting.all
+    @setting = Setting.get_all_options
   end
 
   # GET /settings/1

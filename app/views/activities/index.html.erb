@@ -38,8 +38,8 @@
           <% @activities.each do |activity| %>
           <tr>
               <td><%= activity.topic %></td>
-              <td><%= activity.start_time %></td>
-              <td><%= activity.end_time %></td>
+              <td><%= activity.start_time.to_formatted_s(:db) %></td>
+              <td><%= activity.end_time.to_formatted_s(:db) %></td>
               <td></td>
               <td>
                 <%= link_to '查看活动', activity , :class => 'btn btn-success btn-sm'%> &nbsp;

@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<ul>
+  <li><%= @donor.name %></li>
+  <li><%= @donor.email %></li>
+  <li>...</li>
+</ul>
 
 <%= link_to 'Edit', edit_donor_path(@donor) %> |
 <%= link_to 'Back', donors_path %>

@@ -4,7 +4,8 @@ class DonorsController < ApplicationController
   # GET /donors
   # GET /donors.json
   def index
-    @donors = Donor.all
+    # @donors = Donor.all
+    @donors = Donor.page(params[:page]).per(1)
   end
 
   # GET /donors/1
@@ -69,6 +70,11 @@ class DonorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def donor_params
-      params[:donor]
+      params.require(:donor).permit(:name, 
+                                   :email, 
+                                   :phone, 
+                                   :address,
+                                   :wordsto,
+                                   :identify)
     end
 end

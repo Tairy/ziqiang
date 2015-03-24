@@ -6,6 +6,10 @@ class Setting
     self.first[option]
   end
 
+  def self.get_all_options
+    self.first
+  end
+
   def self.set_option(key, value)
     if self.first.nil?
       object = self.new(key => value)

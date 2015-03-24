@@ -16,8 +16,13 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :donor, :value => "捐赠者：" %>
+    <%= f.text_field :donor, :class => "form-control",:placeholder => "输入捐赠者姓名" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :donate_time, :value => "捐赠时间：" %>
-    <%= f.text_field :donate_time, :class => "form-control",:placeholder => "输入捐赠时间" %>
+    <%= f.date_field :donate_time, :class => "form-control",:placeholder => "输入捐赠时间" %>
   </div>
 
   <div class="form-group">
