@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">
+      <i class="fa fa-list-ul"></i> 预约书籍列表
+    </h1>
+    <ol class="breadcrumb">
+      <li>
+        <i class="fa fa-book"></i> 书籍管理
+      </li>
+      <li class="active">
+          <i class="fa fa-list-ul"></i> 预约书籍列表
+      </li>
+    </ol>
+  </div>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>书名</th>
+            <th>作者</th>
+            <th>捐赠者</th>
+            <th>预约者</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+          <tr>
+              <td><%= link_to book.name, book %></td>
+              <td><%= book.author %></td>
+              <td><%= book.donor %></td>
+              <td><%= link_to book.reserver.true_name, book.reserver %></td>
+              <td>
+                <%= form_for book do |f| %>
+                  <%= f.hidden_field :status, value: "BORROWED" %>
+                  <%= f.submit "确认借出", class: "btn btn-danger btn-sm" %>
+                <% end %>
+              </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%= paginate @books, :outer_window => 2 %>

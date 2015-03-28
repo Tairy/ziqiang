@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  Mongoid.raise_not_found_error = false
 
   field :card_num, type: String
   field :password, type: String
@@ -16,11 +17,13 @@ class User
   validates :card_num, presence: true,
                       uniqueness: true
 
-  validates :card_num, presence: true
-
   has_and_belongs_to_many :borrowed_books, 
                           class_name: 'Book', 
                           inverse_of: :borrower
+
+  has_many :reserved_books,
+           class_name: 'Book',
+           inverse_of: :reserver
 
   has_one :current_borrow_book, 
           class_name: 'Book', 
@@ -54,12 +57,17 @@ class User
               'password' => self.password, 
               'appid' => '8a3fba612f4688b795d15d468e39e059'
             }
+    puts self.password
     response = Net::HTTP.post_form(URI.parse('http://herald.seu.edu.cn/uc/auth'),params)
 
     if response.code == "200"
-      self.update_attribute("uuid", response.body)
+      self.uuid = response.body
+      return "AUTH_SUCCESS"
+      # self.update_attribute("uuid", response.body)
     elsif response.code == "401"
       return "WRONG_USERNAME_OR_PASSWORD"
+    else
+      return false
     end
   end
 

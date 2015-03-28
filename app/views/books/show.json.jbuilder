@@ -1,1 +1,6 @@
-json.extract! @book, :id, :created_at, :updated_at
+json.extract! @book, :id, 
+                     :name, 
+                     :author, 
+                     :actual_restitution_time, 
+                     :status, 
+                     :reserve_user_id

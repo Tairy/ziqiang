@@ -2,7 +2,7 @@ class Book
   include Mongoid::Document
   field :name, type: String
   field :author, type: String
-  field :tag, type: String
+  # field :tag, type: String
   # field :donor, type: String
   field :donate_time, type: DateTime
   field :status, type: String
@@ -11,6 +11,7 @@ class Book
   field :actual_restitution_time, type: DateTime
   field :barcode, type: String
   field :borrow_times, type: String
+  field :reserve_user_id, type: String
 
   validates :name, presence: true
   validates :author, presence: true
@@ -19,6 +20,7 @@ class Book
 
   has_and_belongs_to_many :tags
   has_and_belongs_to_many :borrowers, class_name: 'User', inverse_of: :borrowed_books
+  belongs_to :reserver, class_name: 'User', inverse_of: :reserved_books
   has_one :current_borrowed_user, class_name: 'User', inverse_of: :current_borrow_book
   has_many :evaluations
   belongs_to :donor

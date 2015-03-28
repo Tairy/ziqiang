@@ -25,15 +25,46 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    user_temp = User.find_by(:card_num => user_params["card_num"])
+    # @user = user_temp.nil? ? User.new(user_params) : user_temp
+    if user_temp.nil?
+      @user = User.new(user_params)
+      auth = @user.auth
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if auth == "AUTH_SUCCESS"
+          if @user.save
+            @user.get_user_info
+            format.html { redirect_to @user, notice: '登录成功' }
+            format.json { render :show, status: :created, location: @user }
+          else
+            format.html { render :new }
+            format.json { render json: @user.errors, status: :unprocessable_entity }
+          end
+        elsif auth = "WRONG_USERNAME_OR_PASSWORD"
+          format.html { render :new }
+          format.json { render json: "用户名密码错误", status: :unprocessable_entity }
+        else
+          format.html { render :new }
+          format.json { render json: "服务器故障，请稍后再试", status: :unprocessable_entity }
+        end
+      end
+    else
+      @user = user_temp
+      @user.update_attribute("password",user_params['password'])
+
+      respond_to do |format|
+        if @user.auth == "AUTH_SUCCESS"
+          @user.update_attribute("uuid", @user.uuid)
+          format.html { redirect_to @user, notice: '登录成功' }
+          format.json { render :show, status: :created, location: @user }
+        elsif auth = "WRONG_USERNAME_OR_PASSWORD"
+          format.html { render :new }
+          format.json { render json: "用户名密码错误", status: :unprocessable_entity }
+        else
+          format.html { render :new }
+          format.json { render json: "服务器故障，请稍后再试", status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -70,6 +101,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params[:user]
+      params.require(:user).permit(:card_num, 
+                                   :password)
     end
 end

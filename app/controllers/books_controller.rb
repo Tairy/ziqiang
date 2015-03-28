@@ -1,11 +1,16 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :reserve]
 
   # GET /books
   # GET /books.json
   def index
     # @books = Book.all
     @books = Book.page(params[:page]).per(1)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json  { render :json => @books, status: :ok }
+    end
   end
 
   # GET /books/1
@@ -39,6 +44,32 @@ class BooksController < ApplicationController
     end
   end
 
+  # PATCH/PUT /books/reserve/1
+  # PATCH/PUT /books/reserve/1.json
+  def reserve
+    unless params['reserve_user_id'].nil?
+      reserver = User.find(params['reserve_user_id'])
+      puts reserver
+      unless reserver.nil?
+        reserver.reserved_books << @book
+        respond_to do |format|
+          if @book.update_attributes(:reserver => reserver, :status => "RESERVED")
+            format.json { render :json => "预约成功", status: :ok }
+          else
+            format.json { render :json => "预约失败，未知错误", status: :error }
+          end
+        end 
+      end
+      # respond_to do |format|
+      #   if @book.status == "CANBORROW" && @book.update_attributes(:reserve_user_id => params['reserve_user_id'], :status => "RESERVED")
+      #     format.json { render :json => "预约成功", status: :ok }
+      #   else
+      #     format.json { render :json => "预约失败，未知错误", status: :error }
+      #   end
+      # end
+    end
+  end
+
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
@@ -63,6 +94,22 @@ class BooksController < ApplicationController
     end
   end
 
+  def reserve_list
+    @books = Book.where(:status => "RESERVED").page(params[:page]).per(1)
+  end
+
+  def restitution_list
+    @books = Book.where(:status => "RESTITUTIONED").page(params[:page]).per(1)
+  end
+
+  def outtime_list
+    @books = Book.page(params[:page]).per(1)
+  end
+
+  def honor_list
+    @books = Book.page(params[:page]).per(1)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
@@ -73,8 +120,9 @@ class BooksController < ApplicationController
     def book_params
       params.require(:book).permit(:name, 
                                    :author, 
-                                   :tag, 
+                                   :tags,
                                    :donate_time,
-                                   :barcode)
+                                   :barcode,
+                                   :status)
     end
 end

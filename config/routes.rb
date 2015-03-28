@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'books/reserve_list' => 'books#reserve_list'
+  get 'books/outtime_list' => 'books#outtime_list'
+  get 'books/restitution_list' => 'books#restitution_list'
+  get 'books/honor_list' => 'books#honor_list'
+  patch 'books/reserve/:id' => 'books#reserve'
+
   # resources :settings
   resources :activities
   # resources :admins
@@ -9,6 +15,9 @@ Rails.application.routes.draw do
   resources :users
 
   match '/admin', to: 'admins#index', via: 'get'
+  # match '/books/reserve/:id' => 'books#reserve', via: 'patch'
+
+  # get 'books/reserve_list' => 'books#reserve_list'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
