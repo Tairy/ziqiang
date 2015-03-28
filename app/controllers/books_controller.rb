@@ -47,26 +47,36 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/reserve/1
   # PATCH/PUT /books/reserve/1.json
   def reserve
-    unless params['reserve_user_id'].nil?
-      reserver = User.find(params['reserve_user_id'])
-      puts reserver
-      unless reserver.nil?
-        reserver.reserved_books << @book
-        respond_to do |format|
-          if @book.update_attributes(:reserver => reserver, :status => "RESERVED")
-            format.json { render :json => "预约成功", status: :ok }
-          else
-            format.json { render :json => "预约失败，未知错误", status: :error }
-          end
-        end 
+    is_success = true
+
+    if @book.status != "CANBORROW"
+      is_success = false
+      error = "当前书籍不可借，请稍候再试"
+    end
+
+    if params['reserve_user_id'].nil?
+      error = "参数错误"
+      is_success = false
+    end
+
+    reserver = User.find(params['reserve_user_id'])
+    if !is_success && reserver.nil?
+      error = "参数错误"
+      is_success = false
+    end
+
+    reserver.reserved_books << @book
+    if !is_success && !@book.update_attributes(:reserver => reserver, :status => "RESERVED")
+      is_success = false
+      error = "服务器错误，请稍候再试"
+    end
+
+    respond_to do |format|
+      if is_success
+        format.json { render :json => "预约成功", status: :ok }
+      else
+        format.json { render :json => error, status: :error }
       end
-      # respond_to do |format|
-      #   if @book.status == "CANBORROW" && @book.update_attributes(:reserve_user_id => params['reserve_user_id'], :status => "RESERVED")
-      #     format.json { render :json => "预约成功", status: :ok }
-      #   else
-      #     format.json { render :json => "预约失败，未知错误", status: :error }
-      #   end
-      # end
     end
   end
 
