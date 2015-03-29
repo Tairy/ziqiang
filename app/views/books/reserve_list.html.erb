@@ -37,7 +37,7 @@
               <td><%= link_to book.reserver.true_name, book.reserver %></td>
               <td>
                 <%= form_for book do |f| %>
-                  <%= f.hidden_field :status, value: "BORROWED" %>
+                  <%= f.hidden_field :command, value: "CONFIRMBORROW"%>
                   <%= f.submit "确认借出", class: "btn btn-danger btn-sm" %>
                 <% end %>
               </td>

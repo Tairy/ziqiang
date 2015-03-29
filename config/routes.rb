@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'books/restitution_list' => 'books#restitution_list'
   get 'books/honor_list' => 'books#honor_list'
   patch 'books/reserve/:id' => 'books#reserve'
+  patch 'books/restitution/:id' => 'books#restitution'
 
   # resources :settings
   resources :activities

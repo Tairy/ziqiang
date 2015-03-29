@@ -1,5 +1,7 @@
 class Book
   include Mongoid::Document
+  Mongoid.raise_not_found_error = false
+
   field :name, type: String
   field :author, type: String
   # field :tag, type: String
@@ -31,5 +33,27 @@ class Book
     end
 
     self.borrowers.last
+  end
+
+  def confirmborrow
+    if self.status == "RESERVERD"
+      self.status = "BORROWED"
+      self.borrowers << self.reserver
+      self.reserver.borrowed_books << self
+      self.reserver.save
+      self.save
+      self.reserver = nil
+      return true
+    end
+    return false
+  end
+
+  def confimrestitu
+    if self.status == "RESTITUTIONED"
+      self.status = "CANBORROW"
+      self.save
+      return true
+    end
+    return false
   end
 end

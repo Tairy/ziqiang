@@ -23,13 +23,38 @@ class User
 
   has_many :reserved_books,
            class_name: 'Book',
-           inverse_of: :reserver
+           inverse_of: :reserver,
+           dependent: :nullify
 
   has_one :current_borrow_book, 
           class_name: 'Book', 
           inverse_of: :current_borrowed_user
 
   has_many :evaluations
+
+  def reseve(book)
+    if book.status == "CANBORROW"
+      self.reserved_books << book
+      book.reserver = self
+      book.status = "RESERVERD"
+      book.save
+      return true
+    end
+
+    return false
+  end
+
+  def cancel_reseve(book)
+    if book.reserver == self
+      # self.reserved_books.last.destroy
+      self.reserved_books.delete(book)
+      book.status = "CANBORROW"
+      book.save
+      return true
+    end
+
+    return false
+  end
 
   def borrow(book)
     if book.status == 'BORROWED'
@@ -48,8 +73,13 @@ class User
   end
 
   def restitution(book)
-    book.update_attributes(:status => 'CANBORROW', 
+    if book.status == "BORROWED" && book.current_borrower == self
+      book.update_attributes(:status => 'RESTITUTIONED', 
                            :actual_restitution_time => Time.now)
+      return true
+    else
+      return false
+    end
   end
 
   def auth
