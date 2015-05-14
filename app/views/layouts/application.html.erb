@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>自强书屋-管理员系统</title>
+  <title>自强书社</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= render 'layouts/ie' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %> alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-      <%= value %>
-    </div>
-  <% end %>
-  <div id="wrapper">
-    <!-- Navigation -->
-    <div id="page-wrapper">
-      <div class="container-fluid">
-      <header class="bar bar-nav">
-        <h1 class="title">Title</h1>
-      </header>
-        <%= yield %>
-      </div>
-    </div>
-  </div>
+  <%#= yield %>
+  <nav class="bar bar-tab">
+    <a class="tab-item active" href="#">
+      <span class="icon icon-home"></span>
+      <span class="tab-label">Home</span>
+    </a>
+    <a class="tab-item" href="#">
+      <span class="icon icon-person"></span>
+      <span class="tab-label">Profile</span>
+    </a>
+    <a class="tab-item" href="#">
+      <span class="icon icon-star-filled"></span>
+      <span class="tab-label">Favorites</span>
+    </a>
+    <a class="tab-item" href="#">
+      <span class="icon icon-search"></span>
+      <span class="tab-label">Search</span>
+    </a>
+    <a class="tab-item" href="#">
+      <span class="icon icon-gear"></span>
+      <span class="tab-label">Settings</span>
+    </a>
+  </nav>
 </body>
 </html>
