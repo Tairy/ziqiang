@@ -1,10 +1,10 @@
-class BooksController < ApplicationController
+class Admin::BooksController < Admin::ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy, :reserve, :restitution]
 
   # GET /books
   # GET /books.json
   def index
-    # @books = Book.all
+    #@books = Book.all
     @books = Book.page(params[:page]).per(10)
 
     respond_to do |format|
@@ -129,7 +129,7 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
+      format.html { redirect_to admin_books_url, notice: 'Book was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

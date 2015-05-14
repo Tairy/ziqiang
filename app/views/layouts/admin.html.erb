@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>自强书屋-管理员系统</title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'admin', 'data-turbolinks-track' => true %>
   <%= render 'layouts/ie' %>
   <%= csrf_meta_tags %>
 </head>
@@ -18,11 +18,9 @@
   <% end %>
   <div id="wrapper">
     <!-- Navigation -->
+    <%= render 'layouts/nav' %>
     <div id="page-wrapper">
       <div class="container-fluid">
-      <header class="bar bar-nav">
-        <h1 class="title">Title</h1>
-      </header>
         <%= yield %>
       </div>
     </div>

@@ -1,24 +1,19 @@
 <div class="row">
   <div class="col-lg-12">
     <h1 class="page-header">
-      <i class="fa fa-list-ul"></i> 书籍列表
+      <i class="fa fa-list-ul"></i> 归还书籍列表
     </h1>
     <ol class="breadcrumb">
       <li>
         <i class="fa fa-book"></i> 书籍管理
       </li>
       <li class="active">
-          <i class="fa fa-list-ul"></i> 书籍列表
+          <i class="fa fa-list-ul"></i> 归还书籍列表
       </li>
     </ol>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-lg-12 cs-add-book-btn">
-    <%= link_to '添加书籍', new_admin_book_path , :class => 'btn btn-success btn-sm pull-right'%>
-  </div>
-</div>
 <br>
 <div class="row">
   <div class="col-lg-12">
@@ -29,8 +24,6 @@
             <th>书名</th>
             <th>作者</th>
             <th>捐赠者</th>
-            <th>捐赠时间</th>
-            <th>当前状态</th>
             <th>借阅者</th>
             <th>操作</th>
           </tr>
@@ -41,14 +34,6 @@
               <td><%= book.name %></td>
               <td><%= book.author %></td>
               <td><%= book.donor %></td>
-              <td><%= book.donate_time.to_formatted_s(:db) %></td>
-              <td>
-                <% if book.status == "BORROWED" %>
-                  <span style="color:red;"> 已借出 </span>
-                <% elsif book.status == "CANBORROW" %>
-                  可&nbsp;&nbsp;&nbsp;&nbsp;借
-                <% end %>
-              </td>
               <td>
                 <% if book.current_borrower %>
                   <%= link_to book.current_borrower.true_name , book.current_borrower%>
@@ -56,9 +41,12 @@
                   无
                 <% end %>
               </td>
-              <td><%= link_to '查看书籍', admin_book_path(book) , :class => 'btn btn-success btn-sm'%> &nbsp;
-                  <%= link_to '编辑书籍', edit_admin_book_path(book), :class => 'btn btn-primary btn-sm' %> &nbsp;
-                  <%= link_to '删除书籍', admin_book_path(book), method: :delete, data: { confirm: '确认删除？' }, :class=>'btn btn-danger btn-sm'%></td>
+              <td>
+                <%= form_for book do |f| %>
+                  <%= f.hidden_field :command, value: "CONFIRMRESTITUTE"%>
+                  <%= f.submit "确认归还", class: "btn btn-danger btn-sm" %>
+                <% end %>
+              </td>
           </tr>
           <% end %>
         </tbody>

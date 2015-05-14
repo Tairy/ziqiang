@@ -1,7 +1,7 @@
-class ApplicationController < ActionController::Base
+class Admin::ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  layout 'application'
+  layout 'admin'
   protect_from_forgery with: :exception
   protect_from_forgery unless: -> { request.format.json? }
 
