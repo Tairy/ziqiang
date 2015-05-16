@@ -2,34 +2,39 @@
 <html>
 <head>
   <title>自强书社</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= render 'layouts/ie' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <%#= yield %>
-  <nav class="bar bar-tab">
-    <a class="tab-item active" href="#">
-      <span class="icon icon-home"></span>
-      <span class="tab-label">Home</span>
-    </a>
-    <a class="tab-item" href="#">
-      <span class="icon icon-person"></span>
-      <span class="tab-label">Profile</span>
-    </a>
-    <a class="tab-item" href="#">
-      <span class="icon icon-star-filled"></span>
-      <span class="tab-label">Favorites</span>
-    </a>
-    <a class="tab-item" href="#">
-      <span class="icon icon-search"></span>
-      <span class="tab-label">Search</span>
-    </a>
-    <a class="tab-item" href="#">
-      <span class="icon icon-gear"></span>
-      <span class="tab-label">Settings</span>
-    </a>
-  </nav>
+  <div class="snap-drawers">
+    <div class="snap-drawer snap-drawer-left" id="left-drawer">
+      <ul class="list">
+        <li class="list-divider">Demos</li>
+        <li><a href="../default.html" data-ignore="push">Default</a></li>
+        <li><a href="../noDrag.html" data-ignore="push">No Drag</a></li>
+        <li><a href="../rightDisabled.html" data-ignore="push">Right Disabled</a></li>
+        <li><a href="../skinnyThreshold.html" data-ignore="push">Skinny Threshold</a></li>
+        <li><a href="../toggles.html" data-ignore="push">Toggles</a></li>
+        <li><a href="../classNames.html" data-ignore="push">Class Names</a></li>
+        <li><a href="../expand.html" data-ignore="push">Expanding</a></li>
+        <li><a href="../settings.html" data-ignore="push">Settings</a></li>
+        <li><a href="template.html" data-ignore="push">Ratchet</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="content" class="snap-content">
+    <header class="bar bar-standard bar-header">
+      <a class="icon icon-bars pull-left" id="toggle-left"></a>
+      <a class="icon icon-more-vertical pull-right"></a>
+      <h1 class="title">物理系自强书社</h1>
+    </header>
+    <%= yield %>
+  </div>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>

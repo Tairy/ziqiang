@@ -14,3 +14,12 @@
  *= require_self
  *= require font-awesome
  */
+ .bar-tab{
+  top:auto;
+ }
+ ul.table-view{
+  margin:15px 10px;
+  border: 1px solid #b2b2b2;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgba(0,0,0,.25)
+ }

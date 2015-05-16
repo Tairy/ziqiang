@@ -15,3 +15,40 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree ./mobile
+
+var 
+    
+// Helper
+$ = function(id){
+  return document.getElementById(id);
+},
+
+// Instance
+snapper = new Snap({
+  element: document.getElementById('content')
+}),
+
+// 
+UpdateDrawers = function(){
+  var state = snapper.state(),
+    towards = state.info.towards,
+    opening = state.info.opening;
+  if(opening=='right' && towards=='left'){
+    // $('right-drawer').classList.add('active-drawer');
+    $('left-drawer').classList.remove('active-drawer');
+  } else if(opening=='left' && towards=='right') {
+    // $('right-drawer').classList.remove('active-drawer');
+    $('left-drawer').classList.add('active-drawer');
+  }
+};
+
+snapper.on('drag', UpdateDrawers);
+snapper.on('animating', UpdateDrawers);
+snapper.on('animated', UpdateDrawers);
+
+$('toggle-left').addEventListener('click', function(){
+  snapper.open('left');
+});
+// $('toggle-right').addEventListener('click', function(){
+//   snapper.open('right');
+// });

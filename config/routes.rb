@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :users
   end
 
-
+  root 'books#index'
   resources :books
+  resources :users
+  resources :activities
 end
