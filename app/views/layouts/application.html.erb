@@ -12,27 +12,21 @@
 <body>
   <%#= yield %>
   <div class="snap-drawers">
-    <div class="snap-drawer snap-drawer-left" id="left-drawer">
+    <div class="snap-drawer snap-drawer-left user-info" id="left-drawer">
+      <center>
+        <img src="http://tp4.sinaimg.cn/2519839163/180/5683979741/1" alt="" class="logo-img">
+        <h4>郭耿瑞</h4>
+      </center>
+      <hr>
       <ul class="list">
-        <li class="list-divider">Demos</li>
-        <li><a href="../default.html" data-ignore="push">Default</a></li>
-        <li><a href="../noDrag.html" data-ignore="push">No Drag</a></li>
-        <li><a href="../rightDisabled.html" data-ignore="push">Right Disabled</a></li>
-        <li><a href="../skinnyThreshold.html" data-ignore="push">Skinny Threshold</a></li>
-        <li><a href="../toggles.html" data-ignore="push">Toggles</a></li>
-        <li><a href="../classNames.html" data-ignore="push">Class Names</a></li>
-        <li><a href="../expand.html" data-ignore="push">Expanding</a></li>
-        <li><a href="../settings.html" data-ignore="push">Settings</a></li>
-        <li><a href="template.html" data-ignore="push">Ratchet</a></li>
+        <li><a href="#" data-ignore="push"><i class="fa fa-book"></i> 我的借阅</a></li>
+        <li><a href="/donors/new" data-ignore="push"><i class="fa fa-share"></i> 我要捐赠</a></li>
+        <li><a href="#" data-ignore="push"><i class="fa fa-heart"></i> 爱心人士</a></li>
+        <li><a href="/users/new" data-ignore="push"><i class="fa fa-heart"></i> 登录</a></li>
       </ul>
     </div>
   </div>
   <div id="content" class="snap-content">
-    <header class="bar bar-standard bar-header">
-      <a class="icon icon-bars pull-left" id="toggle-left"></a>
-      <a class="icon icon-more-vertical pull-right"></a>
-      <h1 class="title">物理系自强书社</h1>
-    </header>
     <%= yield %>
   </div>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>

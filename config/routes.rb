@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   resources :books
   resources :users
   resources :activities
+  resources :donors
 end

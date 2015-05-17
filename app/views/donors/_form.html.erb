@@ -1,0 +1,36 @@
+<%= form_for(@donor) do |f| %>
+  <%= render 'error' %>
+  <div class="form-group">
+    <%= f.label :name , :value => "捐赠者姓名:"%><br>
+    <%= f.text_field :name, :class => "form-control", :placeholder => "输入捐赠者姓名" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email, :value => "捐赠者邮箱：" %><br>
+    <%= f.text_field :email, :class => "form-control", :placeholder => "输入捐赠者邮箱" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phone, :value => "捐赠者电话：" %>
+    <%= f.text_field :phone, :class => "form-control",:placeholder => "捐赠者电话" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address, :value => "捐赠者地址：" %>
+    <%= f.text_field :address, :class => "form-control",:placeholder => "捐赠者地址" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :identify, :value => "捐赠者身份：" %>
+    <%= f.text_field :identify, :class => "form-control",:placeholder => "输入捐赠者身份" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :wordsto, :value => "捐赠寄语：" %>
+    <%= f.text_field :wordsto, :class => "form-control", :placeholder => "捐赠寄语" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit :class => "btn btn-success btn-block", :value => "添加书籍" %>
+  </div>
+<% end %>
