@@ -4,8 +4,10 @@ class Book
 
   field :name, type: String
   field :author, type: String
+  field :summary, type: String
   # field :tag, type: String
   # field :donor, type: String
+  field :image, type: String
   field :donate_time, type: DateTime
   field :status, type: String
   field :borrow_time, type: DateTime
@@ -55,5 +57,14 @@ class Book
       return true
     end
     return false
+  end
+
+  def get_info_from_douban
+    res = Net::HTTP.get(URI.parse("https://api.douban.com/v2/book/isbn/#{self.barcode}"))
+    json_info = JSON::parse(res)
+    self.name = json_info['subtitle']
+    self.author = json_info['author'][0]
+    self.image = json_info['image']
+    self.summary = json_info['summary']
   end
 end

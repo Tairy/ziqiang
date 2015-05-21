@@ -20,26 +20,17 @@
 </nav>
 
 <div class="content">
-  <ul class="table-view">
-    <li class="table-view-cell media">
-      <a class="navigate-right" href="/books/1" data-transition="slide-in">
-        <img class="media-object pull-left" src="http://placehold.it/42x60">
-        <div class="media-body">
-          Item 1
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet.</p>
-        </div>
-      </a>
-    </li>
-  </ul>
-  <ul class="table-view">
-    <li class="table-view-cell media">
-      <a class="navigate-right">
-        <img class="media-object pull-left" src="http://placehold.it/42x60">
-        <div class="media-body">
-          Item 1
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet.</p>
-        </div>
-      </a>
-    </li>
-  </ul>
+  <% @books.each do |book| %>
+    <ul class="table-view">
+      <li class="table-view-cell media">
+        <a class="navigate-right" href="/books/<%= book._id %>">
+          <img class="media-object pull-left" src="<%= book.image%>">
+          <div class="media-body">
+            <%= book.name %>
+            <p><%= book.summary.truncate(50) %></p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  <% end %>
 </div>

@@ -5,6 +5,7 @@ class Activity
   field :start_time, type: DateTime
   field :end_time, type: DateTime
   field :introduce, type: String
+  field :post_image, type: String
 
   validates :topic, presence: true
   validates :start_time, presence: true

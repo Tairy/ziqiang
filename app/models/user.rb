@@ -87,7 +87,7 @@ class User
               'password' => self.password, 
               'appid' => '8a3fba612f4688b795d15d468e39e059'
             }
-    puts self.password
+    # puts self.password
     response = Net::HTTP.post_form(URI.parse('http://herald.seu.edu.cn/uc/auth'),params)
 
     if response.code == "200"

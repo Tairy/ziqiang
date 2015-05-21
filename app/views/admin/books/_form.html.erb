@@ -1,30 +1,29 @@
 <%= form_for [:admin, @book] do |f| %>
   <%= render 'error' %>
-  <div class="form-group">
-    <%= f.label :name , :value => "书籍名称:"%><br>
-    <%= f.text_field :name, :class => "form-control", :placeholder => "输入书名" %>
+  <!-- <div class="form-group">
+    <%#= f.label :name , :value => "书籍名称:"%><br>
+    <%#= f.text_field :name, :class => "form-control", :placeholder => "输入书名" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :author, :value => "作者：" %><br>
-    <%= f.text_field :author, :class => "form-control", :placeholder => "输入作者" %>
+    <%#= f.label :author, :value => "作者：" %><br>
+    <%#= f.text_field :author, :class => "form-control", :placeholder => "输入作者" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :tags, :value => "标签：" %>
-    <%= f.text_field :tags, :class => "form-control",:placeholder => "输入标签" %>
+    <%#= f.label :tags, :value => "标签：" %>
+    <%#= f.text_field :tags, :class => "form-control",:placeholder => "输入标签" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :donor, :value => "捐赠者：" %>
-    <%= f.text_field :donor, :class => "form-control",:placeholder => "输入捐赠者姓名" %>
+    <%#= f.label :donor, :value => "捐赠者：" %>
+    <%#= f.text_field :donor, :class => "form-control",:placeholder => "输入捐赠者姓名" %>
   </div>
-
+ -->
   <div class="form-group">
     <%= f.label :donate_time, :value => "捐赠时间：" %>
     <%= f.date_field :donate_time, :class => "form-control",:placeholder => "输入捐赠时间" %>
   </div>
-
   <div class="form-group">
     <%= f.label :barcode, :value => "条形码：" %>
     <%= f.text_field :barcode, :class => "form-control", :placeholder => "条形码" %>

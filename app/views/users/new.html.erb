@@ -17,9 +17,9 @@
   </a>
 </nav>
 <div class="content">
-  <form class="input-form">
-    <input type="text" placeholder="一卡通号">
-    <input type="password" placeholder="密码">
+  <form class="input-form" method="post" action="/users">
+    <input type="text" placeholder="一卡通号" name="user[card_num]">
+    <input type="password" placeholder="密码" name="user[password]">
     <button class="btn btn-positive btn-block">登 录</button>
   </form>
 </div>

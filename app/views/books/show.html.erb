@@ -1,31 +1,25 @@
 <header class="bar bar-standard bar-header">
-  <a class="icon icon-left-nav pull-left" href="/books" data-transition="slide-out"></a>
+  <a class="icon icon-left-nav pull-left" href="/books"></a>
   <h1 class="title">物理系自强书社</h1>
 </header>
 <nav class="bar bar-tab">
-  <a class="tab-item" href="javascript:void(0);">
+  <a class="tab-item" href="/books">
     <span class="icon icon-home"></span>
     <span class="tab-label">书籍</span>
   </a>
-  <a class="tab-item" href="/activities" data-transition="slide-in">
+  <a class="tab-item" href="/activities">
     <span class="icon icon-person"></span>
     <span class="tab-label">活动</span>
   </a>
-  <a class="tab-item" href="#" data-transition="slide-in">
+  <a class="tab-item" href="#">
     <span class="icon icon-star-filled"></span>
     <span class="tab-label">捐赠</span>
   </a>
 </nav>
 <div class="content">
   <div class="content-padded">
-    <h1>h1. Heading</h1>
-    <h2>h2. Heading</h2>
-    <h3>h3. Heading</h3>
-    <h4>h4. Heading</h4>
-    <h5>h5. Heading</h5>
-    <h6>h6. Heading</h6>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco.</p>
+    <h3><%= @book.name %></h3>
+    <hr>
+    <p><%= @book.summary %></p>
   </div>
 </div>

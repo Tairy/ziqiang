@@ -20,15 +20,17 @@
 </nav>
 
 <div class="content">
+  <% @activities.each do |activity| %>
   <ul class="table-view">
     <li class="table-view-cell media">
-      <a class="navigate-right" href="/activities/1" data-transition="slide-in">
-        <img class="media-object" src="http://placehold.it/300x60">
+      <a class="navigate-right" href="/activities/<%= activity._id %>">
+        <img class="media-object activity-image" src="<%= activity.post_image %>">
         <div class="media-body">
-          Item 1
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet.</p>
+          <%= activity.topic %>
+          <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet.</p> -->
         </div>
       </a>
     </li>
   </ul>
+  <% end %>
 </div>

@@ -32,10 +32,11 @@ class Admin::BooksController < Admin::ApplicationController
   def create
     @book = Book.new(book_params)
     @book.status = "CANBORROW"
+    @book.get_info_from_douban
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html { redirect_to admin_book_url(@book), notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }
@@ -158,10 +159,7 @@ class Admin::BooksController < Admin::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:name, 
-                                   :author, 
-                                   :tags,
-                                   :donate_time,
+      params.require(:book).permit(:donate_time,
                                    :barcode)
     end
 

@@ -28,7 +28,7 @@ class Admin::ActivitiesController < Admin::ApplicationController
 
     respond_to do |format|
       if @activity.save
-        format.html { redirect_to @activity, notice: 'Activity was successfully created.' }
+        format.html { redirect_to admin_activity_path(@activity), notice: 'Activity was successfully created.' }
         format.json { render :show, status: :created, location: @activity }
       else
         format.html { render :new }
@@ -72,6 +72,7 @@ class Admin::ActivitiesController < Admin::ApplicationController
       params.require(:activity).permit(:topic, 
                                    :start_time, 
                                    :end_time, 
-                                   :introduce)
+                                   :introduce,
+                                   :post_image)
     end
 end
