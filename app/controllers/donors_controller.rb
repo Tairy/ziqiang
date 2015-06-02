@@ -38,6 +38,22 @@ class DonorsController < ApplicationController
     end
   end
 
+  def search
+    q = params['q']
+    res = Net::HTTP.get(URI.parse(URI.escape("https://api.douban.com/v2/book/search?q=#{q}&fields=id,title,image,summary")))
+    @json_info = JSON::parse(res)
+
+    # respond_to do |format|
+    #   # format.json { render :show, status: :created, location: @donor }
+    # end
+  end
+
+  def donor
+    book_id = params['book_id']
+    res = Net::HTTP.get(URI.parse(URI.escape("https://api.douban.com/v2/book/#{book_id}")))
+    @json_info = JSON::parse(res)
+  end
+
   # PATCH/PUT /donors/1
   # PATCH/PUT /donors/1.json
   def update
@@ -72,9 +88,7 @@ class DonorsController < ApplicationController
     def donor_params
       params.require(:donor).permit(:name, 
                                    :email, 
-                                   :phone, 
-                                   :address,
-                                   :wordsto,
-                                   :identify)
+                                   :phone,
+                                   :wordsto)
     end
 end

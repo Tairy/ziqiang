@@ -4,6 +4,4 @@ class Admin::ApplicationController < ActionController::Base
   layout 'admin'
   protect_from_forgery with: :exception
   protect_from_forgery unless: -> { request.format.json? }
-
-  include SessionsHelper
 end

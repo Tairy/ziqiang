@@ -11,21 +11,36 @@
 </head>
 <body>
   <%#= yield %>
-  <div class="snap-drawers">
-    <div class="snap-drawer snap-drawer-left user-info" id="left-drawer">
-      <center>
-        <img src="http://tp4.sinaimg.cn/2519839163/180/5683979741/1" alt="" class="logo-img">
-        <h4>郭耿瑞</h4>
-      </center>
-      <hr>
-      <ul class="list">
-        <li><a href="#" data-ignore="push"><i class="fa fa-book"></i> 我的借阅</a></li>
-        <li><a href="/donors/new" data-ignore="push"><i class="fa fa-share"></i> 我要捐赠</a></li>
-        <li><a href="#" data-ignore="push"><i class="fa fa-heart"></i> 爱心人士</a></li>
-        <li><a href="/users/new" data-ignore="push"><i class="fa fa-heart"></i> 登录</a></li>
-      </ul>
+  <% unless current_user.nil? %>
+    <div class="snap-drawers">
+      <div class="snap-drawer snap-drawer-left user-info" id="left-drawer">
+        <center>
+          <img src="http://tp4.sinaimg.cn/2519839163/180/5683979741/1" alt="" class="logo-img">
+          <h4>郭耿瑞</h4>
+        </center>
+        <hr>
+        <ul class="list">
+          <li><a href="#" data-ignore="push"><i class="fa fa-book"></i> 我的借阅</a></li>
+          <li><a href="/donors/new" data-ignore="push"><i class="fa fa-share"></i> 我要捐赠</a></li>
+          <li><a href="#" data-ignore="push"><i class="fa fa-heart"></i> 爱心人士</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
+  <% else %>
+    <div class="snap-drawers">
+      <div class="snap-drawer snap-drawer-left user-info" id="left-drawer">
+        <center>
+          <img src="http://tp4.sinaimg.cn/2519839163/180/5683979741/1" alt="" class="logo-img">
+          <h4>未登录</h4>
+        </center>
+        <hr>
+        <ul class="list">
+          <li><a href="#" data-ignore="push"><i class="fa fa-heart"></i> 爱心人士</a></li>
+          <li><a href="/users/new" data-ignore="push"><i class="fa fa-heart"></i> 登录</a></li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
   <div id="content" class="snap-content">
     <%= yield %>
   </div>

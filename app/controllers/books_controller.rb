@@ -47,10 +47,10 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/reserve/1
   # PATCH/PUT /books/reserve/1.json
   def reserve
-    reserver = User.find(params['user_id'])
+    reserver = User.find(current_user._id)
 
     if reserver.nil?
-      error = "参数错误，用户不存在!"
+      error = "请登录后再操作!"
       is_success = false
     elsif params['command'] == "RESERVE"
       respond_to do |format|

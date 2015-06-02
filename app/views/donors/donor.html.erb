@@ -21,8 +21,15 @@
 
 <div class="content">
   <div class="content-padded">
-    <p>感谢您的馈赠，我们的地址是：xxxxx</p>
-    <p>您可以选择邮寄给我们或者联系我们工作人员</p>
-    <p>网购地址：</p>
+    <h3><%= @json_info['title']%></h3>
+    <h4><%= @json_info['author'][0]%></h4>
+    <img src="<%= @json_info['image']%>" alt="">
   </div>
+  <form class="input-form" method="post" action="/donors">
+    <input type="text" placeholder="您的姓名" name="donor[name]">
+    <input type="text" placeholder="您的邮箱" name="donor[email]">
+    <input type="text" placeholder="您的电话" name="donor[phone]">
+    <textarea placeholder="捐赠寄语" name="donor[wordsto]" row="5"></textarea>
+    <button class="btn btn-positive btn-block">确认捐赠</button>
+  </form>
 </div>

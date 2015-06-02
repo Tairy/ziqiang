@@ -34,8 +34,9 @@ class UsersController < ApplicationController
       respond_to do |format|
         if auth == "AUTH_SUCCESS"
           if @user.save
+            sign_in(@user)
             @user.get_user_info
-            format.html { redirect_to @user, notice: '登录成功' }
+            format.html { redirect_to books_path, notice: '登录成功' }
             format.json { render :show, status: :created, location: @user }
           else
             format.html { render :new }
@@ -55,8 +56,9 @@ class UsersController < ApplicationController
 
       respond_to do |format|
         if @user.auth == "AUTH_SUCCESS"
+          sign_in(@user)
           @user.update_attribute("uuid", @user.uuid)
-          format.html { redirect_to @user, notice: '登录成功' }
+          format.html { redirect_to books_path, notice: '登录成功' }
           format.json { render :show, status: :created, location: @user }
         elsif auth = "WRONG_USERNAME_OR_PASSWORD"
           format.html { render :new }

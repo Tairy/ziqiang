@@ -17,10 +17,20 @@
   </a>
 </nav>
 <div class="content">
-  <div class="content-padded">
+  <div class="card">
     <h2><%= @activity.topic %></h2>
-    <hr>
-    <img src="<%= @activity.post_image%>" alt="" class="activity-image">
-    <p><%= markdown(@activity.introduce) %></p>
+    <small class="pull-right" style="color:gray"><%= @activity.start_time.to_formatted_s(:db) %> 至 <%= @activity.end_time.to_formatted_s(:db) %></small>
   </div>
+  <div class="card">
+    <img src="<%= @activity.post_image%>" alt="" class="activity-image">
+  </div>
+  <div class="card">
+    <%= markdown(@activity.introduce) %>
+  </div>
+  <!-- <div class="content-padded">
+    <h2><%#= @activity.topic %></h2>
+    <hr>
+    <img src="<%#= @activity.post_image%>" alt="" class="activity-image">
+    <p><%#= markdown(@activity.introduce) %></p>
+  </div> -->
 </div>

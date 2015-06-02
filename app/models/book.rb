@@ -8,6 +8,7 @@ class Book
   # field :tag, type: String
   # field :donor, type: String
   field :image, type: String
+  field :large_image, type: String
   field :donate_time, type: DateTime
   field :status, type: String
   field :borrow_time, type: DateTime
@@ -66,5 +67,6 @@ class Book
     self.author = json_info['author'][0]
     self.image = json_info['image']
     self.summary = json_info['summary']
+    self.large_image = json_info['images']['large']
   end
 end

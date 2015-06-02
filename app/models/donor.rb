@@ -10,7 +10,7 @@ class Donor
 
   validates :name, presence: true
   validates :phone, presence: true
-  validates :identify, presence: true
+  # validates :identify, presence: true
 
   has_many :donored_books, class_name: 'Book'
 end

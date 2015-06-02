@@ -17,9 +17,43 @@
   </a>
 </nav>
 <div class="content">
-  <div class="content-padded">
+  <!-- <ul class="table-view">
+    <li class="table-view-cell">
+      <h4><%= @book.name %></h4>
+    </li>
+    <li class="table-view-cell">
+      <p><%= @book.author %> 著</p>
+    </li>
+    <li class="table-view-cell">
+      <p><%= @book.summary %></p>
+    </li>
+  </ul> -->
+  <div class="card">
     <h3><%= @book.name %></h3>
-    <hr>
+    <p>
+      <%= @book.author %> 著
+      <% if @book.status == "CANBORROW" %>
+        <span class="badge badge-primary pull-right">可借</span>
+      <% else %>
+        <span class="badge badge-negative pull-right">不可借</span>
+      <% end %>
+    </p>
+    <!-- <p class="pull-right"><span class="badge badge-primary">1</span></p> -->
+  </div>
+
+  <div class="card">
     <p><%= @book.summary %></p>
   </div>
+
+  <div class="card">
+    <center>
+      <img src="<%= @book.large_image %>" alt="">
+    </center>
+  </div>
+  <% if @book.status == "CANBORROW" %>
+    <div class="content-padded">
+      <!-- <a class="btn btn-positive btn-block" onclick="javascript:alert('ss')">我要借阅</a> -->
+      <%= link_to "我要借阅", book_reserve_path(@book, command: 'RESERVE'), remote: true, method: :post, :class=>"btn btn-positive btn-block" %>
+    </div>
+  <% end %>
 </div>

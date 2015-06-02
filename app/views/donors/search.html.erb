@@ -20,9 +20,17 @@
 </nav>
 
 <div class="content">
-  <div class="content-padded">
-    <p>感谢您的馈赠，我们的地址是：xxxxx</p>
-    <p>您可以选择邮寄给我们或者联系我们工作人员</p>
-    <p>网购地址：</p>
-  </div>
+  <% @json_info['books'].each do |book| %>
+    <ul class="table-view">
+      <li class="table-view-cell media">
+        <a class="navigate-right" href="/donors/donor/<%= book['id'] %>">
+          <img class="media-object pull-left" src="<%= book['image'] %>">
+          <div class="media-body">
+            <%= book['title'] %>
+            <p><%= book['summary'].truncate(50) %></p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  <% end %>
 </div>
