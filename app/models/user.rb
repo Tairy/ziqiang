@@ -39,9 +39,9 @@ class User
       book.status = "RESERVERD"
       book.save
       return true
+    else
+      return false
     end
-
-    return false
   end
 
   def cancel_reseve(book)
@@ -51,9 +51,9 @@ class User
       book.status = "CANBORROW"
       book.save
       return true
+    else
+      return false
     end
-
-    return false
   end
 
   def borrow(book)
