@@ -41,7 +41,7 @@ class Admin::UsersController < Admin::ApplicationController
             format.html { render :new }
             format.json { render json: @user.errors, status: :unprocessable_entity }
           end
-        elsif auth = "WRONG_USERNAME_OR_PASSWORD"
+        elsif auth == "WRONG_USERNAME_OR_PASSWORD"
           format.html { render :new }
           format.json { render json: "用户名密码错误", status: :unprocessable_entity }
         else
@@ -58,7 +58,7 @@ class Admin::UsersController < Admin::ApplicationController
           @user.update_attribute("uuid", @user.uuid)
           format.html { redirect_to @user, notice: '登录成功' }
           format.json { render :show, status: :created, location: @user }
-        elsif auth = "WRONG_USERNAME_OR_PASSWORD"
+        elsif auth == "WRONG_USERNAME_OR_PASSWORD"
           format.html { render :new }
           format.json { render json: "用户名密码错误", status: :unprocessable_entity }
         else
