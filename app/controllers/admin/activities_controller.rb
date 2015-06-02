@@ -1,6 +1,7 @@
-class Admin::ActivitiesController < Admin::ApplicationController
+class Admin::ActivitiesController < Admin::ApplicationController  
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
-
+  layout 'admin'
+  
   # GET /activities
   # GET /activities.json
   def index
