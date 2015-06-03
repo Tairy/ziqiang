@@ -1,6 +1,6 @@
 class Admin::DonorsController < Admin::ApplicationController
   before_action :set_donor, only: [:show, :edit, :update, :destroy]
-
+  layout 'admin'
   # GET /donors
   # GET /donors.json
   def index
