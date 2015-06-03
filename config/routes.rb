@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   match '/donors/search', to: 'donors#search', via: 'post'
   match '/donors/donor/:book_id', to: 'donors#donor', via: 'get'
-  match '/books/reserve/:id', to: 'books#reserve', via: 'post', as: :book_reserve
+  match '/books/reserve/:id', to: 'books#reserve', via: 'get', as: :book_reserve
   match '/books/restitution/:id', to: 'books#restitution', via: 'post', as: :book_rest
 
   root 'books#index'
