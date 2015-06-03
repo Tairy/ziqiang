@@ -41,7 +41,7 @@
   </div>
   <% if @book.status == "CANBORROW" %>
     <div class="content-padded">
-      <!-- <a class="btn btn-positive btn-block" onclick="javascript:alert('ss')">我要借阅</a> -->
+      <a class="btn btn-positive btn-block" onclick="javascript:alert('ss')">我要借阅</a>
       <%= link_to "我要借阅", book_reserve_path(@book, command: 'RESERVE'), remote: true, :class=>"btn btn-positive btn-block" %>
     </div>
   <% end %>
