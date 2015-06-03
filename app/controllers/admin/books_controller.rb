@@ -109,7 +109,7 @@ class Admin::BooksController < Admin::ApplicationController
     if params['book']['command'] == 'CONFIRMBORROW'
       respond_to do |format|
         if @book.confirmborrow
-          format.html { redirect_to @book, notice: '确认借出成功' }
+          format.html { redirect_to '/admin/books/reserve_list' }
         else
           format.html { render :reserve_list }
         end
@@ -117,7 +117,7 @@ class Admin::BooksController < Admin::ApplicationController
     elsif params['book']['command'] == 'CONFIRMRESTITUTE'
       respond_to do |format|
         if @book.confimrestitu
-          format.html { redirect_to @book, notice: '确认归还成功' }
+          format.html { redirect_to '/admin/books/restitution_list'}
         else
           format.html { render :restitution_list }
         end
