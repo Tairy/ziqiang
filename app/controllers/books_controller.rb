@@ -86,7 +86,8 @@ class BooksController < ApplicationController
     else
       respond_to do |format|
         if restitutioner.restitution(@book)
-          format.json { render :json => "归还预约成功，等待管理员处理", status: :ok }
+          # format.json { render :json => "归还预约成功，等待管理员处理", status: :ok }
+          format.js
         else
           format.json { render :json => "归还失败，请稍候尝试", status: :error }
         end
