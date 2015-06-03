@@ -42,7 +42,7 @@
                 <% end %>
               </td>
               <td>
-                <%= form_for book do |f| %>
+                <%= form_for [:admin, book] do |f| %>
                   <%= f.hidden_field :command, value: "CONFIRMRESTITUTE"%>
                   <%= f.submit "确认归还", class: "btn btn-danger btn-sm" %>
                 <% end %>
