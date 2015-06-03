@@ -1,0 +1,36 @@
+<header class="bar bar-standard bar-header">
+  <a class="icon icon-bars pull-left" id="toggle-left"></a>
+  <a class="icon icon-more-vertical pull-right"></a>
+  <h1 class="title">物理系自强书社</h1>
+</header>
+
+<nav class="bar bar-tab">
+  <a class="tab-item active" href="javascript:void(0);">
+    <span class="icon icon-home"></span>
+    <span class="tab-label">书籍</span>
+  </a>
+  <a class="tab-item" href="/activities" data-transition="slide-in">
+    <span class="icon icon-person"></span>
+    <span class="tab-label">活动</span>
+  </a>
+  <a class="tab-item" href="#" data-transition="slide-in">
+    <span class="icon icon-star-filled"></span>
+    <span class="tab-label">捐赠</span>
+  </a>
+</nav>
+
+<div class="content">
+  <% @user.borrowed_books.each do |book| %>
+    <ul class="table-view">
+      <li class="table-view-cell media">
+        <a class="navigate-right" href="/books/<%= book._id %>">
+          <img class="media-object pull-left" src="<%= book.image%>">
+          <div class="media-body">
+            <%= book.name %>
+            <p><%= book.summary.truncate(50) %></p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  <% end %>
+</div>
