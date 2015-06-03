@@ -97,33 +97,33 @@ class Admin::BooksController < Admin::ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    respond_to do |format|
-      if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
-        format.json { render :show, status: :ok, location: @book }
-      else
-        format.html { render :edit }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
-      end
-    end
-    # if params['book']['command'] == 'CONFIRMBORROW'
-    #   respond_to do |format|
-    #     if @book.confirmborrow
-    #       format.html { redirect_to @book, notice: '确认借出成功' }
-    #     else
-    #       format.html { render :reserve_list }
-    #     end
+    # respond_to do |format|
+    #   if @book.update(book_params)
+    #     format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @book }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @book.errors, status: :unprocessable_entity }
     #   end
-    # elsif params['book']['command'] == 'CONFIRMRESTITUTE'
-    #   respond_to do |format|
-    #     if @book.confimrestitu
-    #       format.html { redirect_to @book, notice: '确认归还成功' }
-    #     else
-    #       format.html { render :restitution_list }
-    #     end
-    #   end
-    # else
     # end
+    if params['book']['command'] == 'CONFIRMBORROW'
+      respond_to do |format|
+        if @book.confirmborrow
+          format.html { redirect_to @book, notice: '确认借出成功' }
+        else
+          format.html { render :reserve_list }
+        end
+      end
+    elsif params['book']['command'] == 'CONFIRMRESTITUTE'
+      respond_to do |format|
+        if @book.confimrestitu
+          format.html { redirect_to @book, notice: '确认归还成功' }
+        else
+          format.html { render :restitution_list }
+        end
+      end
+    else
+    end
   end
 
   # DELETE /books/1
