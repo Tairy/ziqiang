@@ -76,10 +76,11 @@
     snapper.on('drag', UpdateDrawers);
     snapper.on('animating', UpdateDrawers);
     snapper.on('animated', UpdateDrawers);
-
-    $('toggle-left').addEventListener('click', function(){
-      snapper.open('left');
-    });
+    if($('toggle-left')){
+      $('toggle-left').addEventListener('click', function(){
+        snapper.open('left');
+      });
+    }
   </script>
 </body>
 </html>
