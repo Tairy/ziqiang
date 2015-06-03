@@ -6,6 +6,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= render 'layouts/ie' %>
   <%= csrf_meta_tags %>
 </head>
@@ -44,6 +45,5 @@
   <div id="content" class="snap-content">
     <%= yield %>
   </div>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>
