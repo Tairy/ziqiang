@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree ./mobile
+//= require_self
 
 var 
     
@@ -49,6 +50,3 @@ snapper.on('animated', UpdateDrawers);
 $('toggle-left').addEventListener('click', function(){
   snapper.open('left');
 });
-// $('toggle-right').addEventListener('click', function(){
-//   snapper.open('right');
-// });
