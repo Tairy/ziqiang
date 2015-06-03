@@ -75,7 +75,8 @@ class User
   def restitution(book)
     if book.status == "BORROWED" && book.current_borrower == self
       book.update_attributes(:status => 'RESTITUTIONED', 
-                           :actual_restitution_time => Time.now)
+                           :actual_restitution_time => Time.now,
+                           :reserver => nil)
       return true
     else
       return false

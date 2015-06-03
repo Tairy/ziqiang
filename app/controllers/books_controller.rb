@@ -65,7 +65,8 @@ class BooksController < ApplicationController
     elsif params['command'] == "CANCELRESERVE"
       respond_to do |format|
         if reserver.cancel_reseve(@book)
-          format.json { render :json => "取消预约成功", status: :ok }
+          format.js
+          # format.json { render :json => "取消预约成功", status: :ok }
         else
           format.json { render :json => "取消预约失败，请稍候尝试", status: :error }
         end
@@ -78,7 +79,7 @@ class BooksController < ApplicationController
   end
 
   def restitution
-    restitutioner = User.find(params['user_id'])
+    restitutioner = User.find(current_user._id)
 
     if restitutioner.nil?
       error = "参数错误，用户不存在!"

@@ -31,11 +31,11 @@ class Book
   belongs_to :donor
 
   def current_borrower
-    if self.status == 'CANBORROW'
+    if self.status == 'BORROWED'
+      return self.borrowers.last
+    else
       return false
     end
-
-    self.borrowers.last
   end
 
   def confirmborrow

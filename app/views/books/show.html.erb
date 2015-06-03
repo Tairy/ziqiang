@@ -39,16 +39,19 @@
       <img src="<%= @book.large_image %>" alt="">
     </center>
   </div>
-  <% if @book.status == "CANBORROW" %>
-    <div class="content-padded">
-      <!-- <a class="btn btn-positive btn-block" onclick="javascript:alert('ss')">我要借阅</a> -->
-      <%= link_to "我要借阅", book_reserve_path(@book, command: 'RESERVE'), remote: true, :class=>"btn btn-positive btn-block" %>
-    </div>
-  <% end %>
-  <% if !current_user.nil? && current_user.borrowed_books.include?(@book)%>
+  <% if !current_user.nil? && @book.current_borrower == current_user%>
     <div class="content-padded">
       <!-- <a class="btn btn-positive btn-block" onclick="javascript:alert('ss')">我要借阅</a> -->
       <%= link_to "我要归还", book_rest_path(@book), remote: true, :class=>"btn btn-positive btn-block" %>
     </div>
+  <% else %>
+    <% if @book.status == "CANBORROW" %>
+      <div class="content-padded">
+        <!-- <a class="btn btn-positive btn-block" onclick="javascript:alert('ss')">我要借阅</a> -->
+        <%= link_to "我要借阅", book_reserve_path(@book, command: 'RESERVE'), remote: true, :class=>"btn btn-positive btn-block" %>
+      </div>
+    <% elsif !current_user.nil? && @book.reserver == current_user%>
+        <%= link_to "取消预约", book_reserve_path(@book, command: 'CANCELRESERVE'), remote: true, :class=>"btn btn-positive btn-block" %>
+    <% end %>
   <% end %>
 </div>
