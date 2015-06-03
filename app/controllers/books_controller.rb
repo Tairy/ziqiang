@@ -56,10 +56,10 @@ class BooksController < ApplicationController
       respond_to do |format|
         if reserver.reseve(@book)
           # format.json { render :json => "预约成功", status: :ok }
-          format.js do
-            render js: "alert('预约成功！');"
-          end
-          #redirect_to @book
+          # format.js do
+          #   render js: ""
+          # end
+          redirect_to @book
         else
           format.json { render :json => "书籍被预约或借出，请稍候再尝试预约！", status: :error }
         end
